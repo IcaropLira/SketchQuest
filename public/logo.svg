@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<title>Hiraku SketchQuest</title>
+<defs>
+<linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="10" x2="0" y2="190">
+<stop offset="0" stop-color="#ee0f7f"/><stop offset="0.4" stop-color="#ff8db8"/><stop offset="0.68" stop-color="#d4a2c8"/><stop offset="1" stop-color="#3b2477"/>
+</linearGradient>
+</defs>
+<ellipse cx="100" cy="104" rx="86" ry="26" transform="rotate(-28 100 104)" fill="none" stroke="url(#g)" stroke-width="1.6"/>
+<g transform="translate(100 104) rotate(40)" fill="url(#g)">
+<rect x="-15" y="-74" width="30" height="16" rx="3"/>
+<rect x="-15" y="-54" width="30" height="5"/>
+<rect x="-15" y="-45" width="30" height="76"/>
+<path d="M-15,35 L15,35 L0,76Z"/>
+</g>
+<g transform="translate(100 104) rotate(40)" fill="#0d0817"><path d="M-4.6,64 L4.6,64 L0,76Z"/></g>
+<path fill="url(#g)" d="M152,18Q154,36 172,38Q154,40 152,58Q150,40 132,38Q150,36 152,18Z"/>
+<path fill="url(#g)" d="M40,150Q41.5,160 51,161.5Q41.5,163 40,173Q38.5,163 29,161.5Q38.5,160 40,150Z"/>
+<circle cx="171" cy="132" r="3.4" fill="url(#g)"/>
+<circle cx="30" cy="62" r="2.6" fill="url(#g)"/>
+</svg>

@@ -1,0 +1,219 @@
+import type { ThemeData } from '../../types';
+
+export const estudos: ThemeData = {
+  id: 'estudos',
+  noGlobal: true,
+  name: 'Estudos Rápidos',
+  emoji: '✏️',
+  hue: 160,
+  blurb: 'Objetos, mãos, luz e sombra. Aquecimento de observação.',
+  subjects: [
+    'a mão', 'o pé', 'o olho', 'a boca', 'o nariz', 'a orelha', 'o sapato', 'a bota', 'a xícara', 'a chave',
+    'o relógio', 'a tesoura', 'a lâmpada', 'a bicicleta', 'a cadeira', 'o violão', 'o ventilador', 'a fruta',
+    'a folha seca', 'o guarda-chuva', 'o telefone antigo', 'a planta em vaso', 'o copo de vidro', 'o livro aberto',
+  ],
+  adjectives: [
+    'amassado|amassada', 'quebrado|quebrada', 'enferrujado|enferrujada', 'molhado|molhada', 'brilhante',
+    'gasto|gasta', 'transparente', 'velho|velha', 'rachado|rachada', 'dobrado|dobrada',
+  ],
+  actions: [
+    'visto|vista de cima', 'visto|vista de baixo', 'de perfil', 'em perspectiva extrema', 'pela metade',
+    'com sombra dramática', 'em contraluz', 'bem de perto', 'em escala gigante', 'derretendo',
+    'em movimento', 'de ponta-cabeça',
+  ],
+  settings: [
+    'sobre uma mesa bagunçada', 'num fundo de tecido amassado', 'sob a luz da manhã',
+    'no escuro, iluminado só por uma lanterna', 'flutuando no vazio', 'sobre papel quadriculado',
+    'sobre um chão de madeira', 'na beira de uma janela', 'num fundo xadrez', 'dentro de uma caixa de papelão',
+    'ao lado de uma sombra bem comprida',
+  ],
+  props: [
+    'com uma folha seca ao lado', 'com um fio solto', 'com uma gota de água', 'com uma etiqueta pendurada',
+    'com uma rachadura no meio', 'com poeira ao redor',
+  ],
+  premade: [
+    'Estudo de mãos: dez mãos diferentes segurando dez objetos do seu quarto.',
+    'Desenhe o seu sapato de cinco ângulos diferentes, um por minuto.',
+    'Uma natureza-morta com três frutas e um objeto que não combina.',
+    'O seu cantinho de trabalho visto de cima, como um mapa.',
+    'Expressões: o mesmo rosto sentindo oito emoções diferentes.',
+    'A dobra de um pano caindo sobre uma cadeira.',
+    'Desenhe o que estava na sua mochila ontem, sem olhar para ela.',
+    'Estudo de sombras: um copo de vidro com luz forte de um lado só.',
+  ],
+};
+
+export const egito: ThemeData = {
+  id: 'egito',
+  name: 'Mitologia Egípcia',
+  emoji: '🏺',
+  hue: 45,
+  blurb: 'Faraós, deuses de cabeça de animal e tumbas douradas.',
+  subjects: [
+    'o faraó', 'a rainha do Nilo', 'o escriba', 'o sacerdote', 'a gata sagrada', 'o deus Anúbis',
+    'a deusa Bastet', 'a deusa Sekhmet', 'o deus Thoth', 'o escaravelho gigante', 'a múmia',
+    'o construtor de pirâmides', 'o barqueiro do Nilo', 'a bailarina do templo', 'o guardião da tumba',
+    'a esfinge', 'o ibis sábio', 'a serpente sagrada', 'o mercador do deserto',
+  ],
+  adjectives: [
+    'dourado|dourada', 'sagrado|sagrada', 'antigo|antiga', 'enigmático|enigmática', 'poderoso|poderosa',
+    'solene', 'adormecido|adormecida', 'majestoso|majestosa',
+  ],
+  actions: [
+    'pesando um coração numa balança', 'navegando pelo Nilo', 'decifrando hieróglifos', 'guardando um segredo',
+    'oferecendo flores de lótus', 'atravessando o deserto', 'construindo uma pirâmide',
+    'acordando depois de mil anos', 'contando uma lenda', 'cuidando de gatos',
+    'pintando as paredes de um templo', 'carregando uma barca solar',
+  ],
+  settings: [
+    'num templo cheio de colunas', 'dentro de uma pirâmide', 'às margens do Nilo ao entardecer',
+    'num mercado de Mênfis', 'numa tumba cheia de tesouros', 'num deserto sob um céu de estrelas',
+    'num palácio de pedra e ouro', 'num barco dourado', 'numa biblioteca de papiros', 'num oásis escondido',
+    'diante da Grande Esfinge',
+  ],
+  props: [
+    'com um cajado de ouro', 'com um colar enorme', 'com uma máscara dourada', 'com um olho de Hórus pintado',
+    'com um papiro enrolado', 'com um escaravelho brilhante nas mãos',
+  ],
+  premade: [
+    'Anúbis fazendo as contas do submundo, de óculos e com uma calculadora de pedra.',
+    'Um gato sagrado que acha que o faraó trabalha para ele.',
+    'A múmia que acorda e só queria um café.',
+    'Uma esfinge que trocou o enigma e agora faz perguntas sobre o clima.',
+    'A deusa Sekhmet escolhendo o vestido para a festa dos deuses.',
+    'O barco solar de Rá atravessando o céu, cheio de passageiros distraídos.',
+    'O escriba do faraó explicando por que os impostos estão atrasados.',
+    'Uma pirâmide com uma placa na porta: "volto em mil anos".',
+  ],
+};
+
+export const noir: ThemeData = {
+  id: 'noir',
+  name: 'Noir',
+  emoji: '🕵️',
+  hue: 260,
+  blurb: 'Chuva, neon, sobretudos e mistérios mal resolvidos.',
+  subjects: [
+    'o detetive', 'a femme fatale', 'o inspetor', 'a cantora de jazz', 'o jornalista', 'o barman',
+    'a viúva misteriosa', 'o motorista de táxi', 'o informante', 'o gato de rua', 'o chefão da cidade',
+    'a datilógrafa', 'o vigia noturno', 'a fotógrafa de jornal', 'o saxofonista', 'a recepcionista do hotel',
+    'o cachorro farejador',
+  ],
+  adjectives: [
+    'cínico|cínica', 'cansado|cansada', 'elegante', 'enigmático|enigmática', 'calado|calada',
+    'desconfiado|desconfiada', 'encharcado|encharcada', 'solitário|solitária', 'impecável',
+  ],
+  actions: [
+    'esperando uma ligação no escuro', 'seguindo alguém sob a chuva', 'analisando uma pista numa foto antiga',
+    'atravessando uma rua molhada', 'lendo uma carta anônima', 'tocando saxofone numa esquina',
+    'escondido atrás de um jornal', 'fugindo por uma escada de incêndio', 'investigando uma mala esquecida',
+    'contando uma mentira', 'espiando por uma persiana', 'encontrando um bilhete debaixo da porta',
+  ],
+  settings: [
+    'num escritório com persianas', 'numa viela escura e molhada', 'num bar de jazz enfumaçado',
+    'num hotel de luzes de neon', 'numa estação de trem à meia-noite', 'num cais envolto em névoa',
+    'numa escada de incêndio', 'no banco de trás de um táxi', 'numa cobertura com vista para a cidade',
+    'numa delegacia vazia', 'num cinema antigo', 'debaixo de um poste de luz piscando',
+  ],
+  props: [
+    'com um sobretudo comprido', 'com um chapéu escondendo o rosto', 'com um guarda-chuva preto',
+    'com uma lupa', 'com uma mala misteriosa', 'com uma sombra enorme atrás',
+  ],
+  premade: [
+    'O detetive que investiga o desaparecimento do próprio chapéu.',
+    'Uma cidade inteira em preto e branco, exceto por um guarda-chuva vermelho.',
+    'O bar onde só se serve leite, e todos fingem ser durões.',
+    'A femme fatale tentando ganhar o campeonato de xadrez do bairro.',
+    'A viela escura onde os gatos fazem reunião de negócios.',
+    'A chuva que não para desde o dia em que o relógio da torre parou.',
+    'O informante que só fala por meio de recortes de jornal.',
+    'Um escritório de detetive cuja clientela é toda de objetos perdidos.',
+  ],
+};
+
+export const cyber: ThemeData = {
+  id: 'cyber',
+  name: 'Cyberpunk',
+  emoji: '🤖',
+  hue: 190,
+  blurb: 'Neon, chuva, implantes e uma cidade que nunca dorme.',
+  subjects: [
+    'a hacker', 'o ciborgue', 'o androide', 'o entregador ciborgue', 'o médico de rua', 'a cantora holográfica',
+    'o robô camelô', 'o cão mecânico', 'o executivo de terno luminoso', 'a mecânica de implantes',
+    'o vendedor de ramen', 'a policial de drones', 'o gato com olho biônico', 'o monge digital', 'a DJ de rua',
+    'a inteligência artificial solitária', 'o velho que ainda usa dinheiro de papel',
+  ],
+  adjectives: [
+    'remendado|remendada', 'cromado|cromada', 'encharcado|encharcada', 'holográfico|holográfica',
+    'hackeado|hackeada', 'luminoso|luminosa', 'cansado|cansada', 'implantado|implantada',
+  ],
+  actions: [
+    'invadindo um sistema', 'correndo por cima dos prédios', 'esperando o metrô flutuante',
+    'consertando o próprio braço', 'vendendo implantes na calçada', 'cantando para ninguém',
+    'dançando numa pista de neon', 'fugindo de uma perseguição de drones', 'lendo anúncios holográficos',
+    'recarregando a bateria', 'comendo ramen na chuva', 'pichando uma parede com tinta fluorescente',
+  ],
+  settings: [
+    'numa megacidade encharcada de neon', 'num beco com letreiros piscando', 'num mercado negro de peças',
+    'no topo de um arranha-céu', 'num metrô lotado', 'numa lanchonete aberta 24 horas',
+    'numa sala cheia de monitores', 'numa passarela entre prédios', 'num ferro-velho de robôs',
+    'numa laje cheia de antenas', 'num porto de contêineres luminosos',
+  ],
+  props: [
+    'com óculos de realidade aumentada', 'com cabos saindo da nuca', 'com uma jaqueta cheia de LEDs',
+    'com um braço biônico', 'com um drone de estimação', 'com uma máscara de neon',
+  ],
+  premade: [
+    'Uma vendedora de ramen cujo carrinho é um robô gigante andando pela cidade.',
+    'O hacker que usa o próprio gato como antena.',
+    'Uma cidade onde a única árvore viva fica dentro de um aquário, no último andar.',
+    'O robô entregador que sonha em ser músico.',
+    'Um monge digital meditando no meio de uma avenida cheia de anúncios.',
+    'A inteligência artificial do prédio cuidando de todos os moradores como se fossem filhos.',
+    'Uma feira de rua onde se vendem lembranças em pen drives.',
+    'O último fliperama do mundo, escondido num beco, com fila na porta.',
+  ],
+};
+
+export const folclore: ThemeData = {
+  id: 'folclore',
+  name: 'Folclore Brasileiro',
+  emoji: '🌳',
+  hue: 140,
+  blurb: 'Saci, Iara, Curupira e as lendas que a gente cresceu ouvindo.',
+  subjects: [
+    'o Saci', 'a Iara', 'o Curupira', 'o boto cor-de-rosa', 'a Mula sem Cabeça', 'o Boitatá', 'a Cuca',
+    'o lobisomem', 'a Caipora', 'o Mapinguari', 'a Comadre Florzinha', 'o boi-bumbá', 'a Cobra Norato',
+    'a Matinta Pereira', 'o pescador de jangada', 'a rezadeira', 'o violeiro', 'a lavadeira do rio',
+  ],
+  adjectives: [
+    'travesso|travessa', 'encantado|encantada', 'faceiro|faceira', 'brincalhão|brincalhona',
+    'misterioso|misteriosa', 'esperto|esperta', 'sorrateiro|sorrateira', 'festeiro|festeira', 'sábio|sábia',
+  ],
+  actions: [
+    'dando um nó no rabo do vento', 'assobiando na mata', 'dançando ao redor da fogueira',
+    'pregando uma peça num caçador', 'cantando na beira do rio', 'empinando pipa', 'contando causos',
+    'trançando uma rede', 'fugindo de uma tempestade de verão', 'fazendo cafuné num filhote de onça',
+    'escondendo as pegadas', 'preparando uma festa na floresta',
+  ],
+  settings: [
+    'numa mata cheia de cipós', 'na beira de um rio da Amazônia', 'num canavial ao entardecer',
+    'num terreiro de festa junina', 'numa estrada de terra sob a lua cheia', 'num sertão rachado de sol',
+    'numa praia com jangadas', 'numa feira nordestina', 'numa floresta de araucárias',
+    'num casarão colonial abandonado', 'numa vila de pescadores', 'ao redor de uma fogueira de São João',
+  ],
+  props: [
+    'com um gorro vermelho', 'com uma viola', 'com um cesto de frutas', 'com fitas coloridas',
+    'com um cipó enrolado no braço', 'com um chapéu de palha',
+  ],
+  premade: [
+    'O Saci aprendendo a empinar pipa num dia sem vento.',
+    'A Iara abrindo uma loja de espelhos d’água.',
+    'O Curupira dando indicações de trilha para turistas, só que ao contrário.',
+    'O boto cor-de-rosa tentando passar despercebido numa festa junina.',
+    'A Cuca preparando a festa de aniversário do jacaré dela.',
+    'O Boitatá iluminando o caminho para os vagalumes voltarem para casa.',
+    'Uma roda de causos na varanda, com cada personagem do folclore ouvindo a própria lenda contada errado.',
+    'A Caipora cuidando de um hospital de bichos da mata.',
+  ],
+};
