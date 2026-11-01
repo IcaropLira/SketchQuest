@@ -54,6 +54,13 @@ export const egito: ThemeData = {
     'a deusa Bastet', 'a deusa Sekhmet', 'o deus Thoth', 'o escaravelho gigante', 'a múmia',
     'o construtor de pirâmides', 'o barqueiro do Nilo', 'a bailarina do templo', 'o guardião da tumba',
     'a esfinge', 'o ibis sábio', 'a serpente sagrada', 'o mercador do deserto',
+    'a deusa Ísis', 'o deus Osíris', 'o deus Hórus', 'o deus Rá', 'o deus Seth', 'a deusa Néftis',
+    'a deusa Nut', 'o deus Geb', 'o deus Khnum', 'o deus Amon', 'a deusa Hathor', 'o deus Ptah',
+    'a deusa Maat', 'o deus Sobek', 'o deus Khonsu', 'a deusa Tefnut', 'o deus Shu', 'a deusa Neith',
+    'a deusa Wadjet', 'a deusa Mut', 'o deus Khepri', 'o deus Atum', 'o deus Bes', 'a deusa Taweret',
+    'o deus Wepwawet', 'o deus Nefertum', 'o deus Hapi', 'a deusa Seshat', 'o deus Anhur',
+    'a barca solar de Rá', 'o tribunal de Osíris', 'um sacerdote de Maat', 'um guardião das Duas Terras',
+    'um artesão de amuletos', 'uma esfinge alada', 'um gato do templo', 'um escriba de hieróglifos',
   ],
   adjectives: [
     'dourado|dourada', 'sagrado|sagrada', 'antigo|antiga', 'enigmático|enigmática', 'poderoso|poderosa',
@@ -73,7 +80,9 @@ export const egito: ThemeData = {
   ],
   props: [
     'com um cajado de ouro', 'com um colar enorme', 'com uma máscara dourada', 'com um olho de Hórus pintado',
-    'com um papiro enrolado', 'com um escaravelho brilhante nas mãos',
+    'com um papiro enrolado', 'com um escaravelho brilhante nas mãos', 'com o ankh da vida', 'com as asas protetoras de Ísis',
+    'com uma balança de Maat', 'com um disco solar entre os chifres', 'com um colar usekh', 'com um sistro sagrado',
+    'com um cetro was', 'com um papiro de feitiços',
   ],
   premade: [
     'Anúbis fazendo as contas do submundo, de óculos e com uma calculadora de pedra.',
@@ -84,6 +93,16 @@ export const egito: ThemeData = {
     'O barco solar de Rá atravessando o céu, cheio de passageiros distraídos.',
     'O escriba do faraó explicando por que os impostos estão atrasados.',
     'Uma pirâmide com uma placa na porta: "volto em mil anos".',
+    'Ísis abrindo suas asas para proteger Osíris durante uma tempestade de areia.',
+    'Hórus e Seth disputando uma corrida de bigas sobre o Nilo.',
+    'Maat tentando equilibrar uma balança enquanto os deuses discutem ao fundo.',
+    'Hathor tocando música para acalmar uma cidade inteira.',
+    'Sobek tomando banho de sol na margem do Nilo como se fosse um crocodilo comum.',
+    'Nut arqueada sobre o mundo, com constelações brilhando pelo corpo.',
+    'Khepri empurrando o sol pela manhã enquanto o mundo ainda está sonolento.',
+    'Seshat registrando numa parede todos os acontecimentos de uma dinastia.',
+    'Um festival noturno em homenagem a Bastet, cheio de lanternas e gatos.',
+    'A barca solar de Rá navegando pelo céu noturno, cercada de estrelas.',
   ],
 };
 
