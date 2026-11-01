@@ -1,0 +1,696 @@
+diff --git a/src/data/themes/index.ts b/src/data/themes/index.ts
+index 9242804..7d28458 100644
+--- a/src/data/themes/index.ts
++++ b/src/data/themes/index.ts
+@@ -6,13 +6,14 @@ import { cartoons, culturaPop, criaturasFantasticas, dc, fnaf, jogos, marvel, mi
+ import { aplicarExpansaoProfunda } from './expansaoProfunda';
+ import { aplicarPatch3 } from './patch3Profundo';
+ import { animeManga, mitologiaCelta, mitologiaChinesa, mitologiaHindu, mitologiaRomana, mitologiasMesoamericanas, pokemon } from './expansaoUniversos';
++import { aplicarPatch4 } from './patch4Universos';
+ 
+-export const BUILTIN_THEMES: ThemeData[] = aplicarPatch3(aplicarExpansaoProfunda([
++export const BUILTIN_THEMES: ThemeData[] = aplicarPatch4(aplicarPatch3(aplicarExpansaoProfunda([
+   fantasia, espaco, terror, faroeste, lhamas, estudos, egito, noir,
+   cyber, folclore, mar, comida, animais, cotidiano, pirata,
+   marvel, dc, fnaf, jogos, cartoons, sliceLife, mitologiaGrega, mitologiaNordica,
+   mitologiaJaponesa, culturaPop, criaturasFantasticas,
+   mitologiaRomana, mitologiaCelta, mitologiaChinesa, mitologiaHindu, mitologiasMesoamericanas, animeManga, pokemon,
+-]));
++])));
+ 
+ export const DEFAULT_THEME_IDS = ['fantasia'];
+diff --git a/src/data/themes/patch4Universos.ts b/src/data/themes/patch4Universos.ts
+new file mode 100644
+index 0000000..1e6747d
+--- /dev/null
++++ b/src/data/themes/patch4Universos.ts
+@@ -0,0 +1,669 @@
++import type { ThemeData } from '../../types';
++
++type Expansion = Partial<Record<'subjects' | 'adjectives' | 'actions' | 'settings' | 'props' | 'premade', string[]>>;
++
++/**
++ * Patch 4: expansão de profundidade para universos já existentes.
++ * O conteúdo é mesclado sem apagar entradas do tema-base e sem duplicatas exatas.
++ */
++const PATCH4: Record<string, Expansion> = {
++  marvel: {
++    subjects: [
++      'a Kate Bishop', 'a America Chavez', 'o Shang-Chi', 'a Echo', 'o Cavaleiro da Lua', 'a Mulher-Hulk',
++      'o Namor', 'a Valquíria', 'o Mysterio', 'o Rei do Crime', 'a Elektra', 'o Noturno', 'a Vampira',
++      'o Gambit', 'o Colossus', 'o Anjo dos X-Men', 'o Bishop', 'a Kitty Pryde', 'o Senhor Sinistro',
++      'a Jessica Jones', 'o Luke Cage', 'o Punho de Ferro', 'o Motoqueiro Fantasma', 'o Blade', 'o Sentinela',
++      'o Nova', 'a Mônica Rambeau', 'o Adam Warlock', 'o Kang', 'a Agatha Harkness', 'o Treinador',
++      'o Abominável', 'o Kraven, o Caçador', 'o Rhino', 'o Lagarto', 'a Madame Máscara', 'o Yondu',
++      'o Korg', 'a Mantis', 'o Howard, o Pato', 'o Beyonder', 'um agente da S.H.I.E.L.D.', 'um jovem mutante'
++    ],
++    actions: [
++      'investigando uma anomalia que dobra o espaço', 'treinando numa sala de gravidade artificial',
++      'tentando manter uma identidade secreta durante uma entrevista', 'negociando uma trégua entre equipes rivais',
++      'protegendo um bairro durante uma queda de energia', 'perdendo o controle de um poder recém-despertado',
++      'participando de uma reunião de condomínio de super-heróis', 'resolvendo um mistério numa estação espacial',
++      'fazendo terapia depois de salvar o mundo', 'tentando devolver um artefato cósmico à pessoa certa',
++      'ensinando um aprendiz a controlar seus poderes', 'se infiltrando numa gala de alta segurança'
++    ],
++    settings: [
++      'numa estação da S.W.O.R.D.', 'numa dimensão espelhada', 'numa loja de conveniência às três da manhã',
++      'num laboratório dos X-Men', 'numa cidade escondida no fundo do oceano', 'numa feira de ciências em Queens',
++      'num abrigo improvisado depois de uma batalha', 'num trem atravessando várias realidades',
++      'numa sala de treinamento holográfica', 'numa pequena cidade sob quarentena mágica'
++    ],
++    props: [
++      'com um comunicador cheio de mensagens não lidas', 'com um artefato que muda de forma',
++      'com um uniforme experimental ainda sem acabamento', 'com um mapa de realidades alternativas',
++      'com uma manopla que projeta constelações', 'com uma mochila de emergência dos Vingadores',
++      'com uma xícara que flutua por causa de um feitiço', 'com um drone de reconhecimento danificado'
++    ],
++    premade: [
++      'Desenhe Kate Bishop e Clint Barton tentando montar um móvel com instruções incompletas.',
++      'A equipe dos X-Men organiza uma feira de talentos e os poderes atrapalham todas as apresentações.',
++      'Um herói cósmico precisa passar despercebido numa lavanderia automática terrestre.',
++      'Imagine a sala de descanso dos Vingadores depois de uma missão que deu errado.',
++      'Desenhe um mutante descobrindo que seu poder é perfeito para uma tarefa completamente banal.',
++      'Dois rivais da Marvel ficam presos num elevador durante uma queda de energia.',
++      'Crie um cartaz de recrutamento para uma equipe de heróis formada por personagens pouco conhecidos.',
++      'Um artefato mágico escolhe uma pessoa comum como guardiã por um único dia.'
++    ]
++  },
++  dc: {
++    subjects: [
++      'a Caçadora', 'o Senhor Destino', 'a Vixen', 'o Questão', 'o Besouro Azul de Ted Kord', 'a Mary Marvel',
++      'o Capitão Átomo', 'a Big Barda', 'o Senhor Mxyzptlk', 'a Cassandra Cain', 'o Capuz Vermelho',
++      'o Espantalho em sua identidade civil', 'o Brainiac', 'a Livewire', 'o Parasita', 'o Rei Tubarão',
++      'a Giganta', 'o Pistoleiro', 'o Pacificador', 'o Espectro', 'a Jessica Cruz', 'o Simon Baz',
++      'o Jon Kent', 'a Lois Lane investigando uma pista', 'o Alfred Pennyworth', 'um membro dos Jovens Titãs',
++      'um policial de Gotham', 'um inventor de Metrópolis'
++    ],
++    actions: [
++      'investigando um desaparecimento sem deixar rastros', 'treinando numa simulação da Torre de Vigilância',
++      'tentando impedir uma profecia de se cumprir', 'protegendo testemunhas durante uma tempestade',
++      'fazendo uma ronda sem usar os próprios poderes', 'desarmando uma armadilha com pistas contraditórias',
++      'organizando um jantar para uma equipe de heróis', 'reconstruindo uma ponte depois de uma batalha',
++      'descobrindo uma mensagem escondida num jornal antigo', 'tentando negociar com uma versão alternativa de si'
++    ],
++    settings: [
++      'numa estação orbital da Liga da Justiça', 'numa Gotham coberta por neblina roxa',
++      'numa pequena cidade que desaparece toda meia-noite', 'num museu de artefatos alienígenas',
++      'numa prisão construída para seres superpoderosos', 'numa feira de rua em Metrópolis',
++      'numa ilha que só aparece durante eclipses', 'numa biblioteca secreta da magia',
++      'numa cidade futurista protegida por lanternas', 'num telhado com vista para os letreiros de Gotham'
++    ],
++    props: [
++      'com um arquivo confidencial cheio de páginas arrancadas', 'com um dispositivo de contenção alienígena',
++      'com uma lanterna que projeta memórias', 'com um amuleto da Sociedade da Justiça',
++      'com um bilhete deixado pelo próprio futuro', 'com um comunicador dos Jovens Titãs',
++      'com um sobretudo encharcado de chuva', 'com um mapa de túneis esquecidos sob a cidade'
++    ],
++    premade: [
++      'Desenhe Alfred tentando organizar uma reunião da Batfamília sem que ninguém discuta.',
++      'A Liga da Justiça precisa resolver um problema doméstico sem usar nenhum superpoder.',
++      'Crie uma capa de quadrinho para um mistério sobrenatural ocorrido em Gotham.',
++      'Um vilão da DC abre uma loja e tenta manter o passado criminoso em segredo.',
++      'Desenhe uma equipe de heróis numa missão em que todos precisam trabalhar disfarçados.',
++      'Imagine a Torre de Vigilância durante uma noite em que todos os heróis estão de folga.',
++      'Um artefato mágico troca as habilidades de dois integrantes dos Jovens Titãs.',
++      'Desenhe uma cidade da DC vista pelos olhos de alguém que nunca encontrou um super-herói.'
++    ]
++  },
++  fnaf: {
++    subjects: [
++      'Withered Freddy', 'Withered Bonnie', 'Withered Chica', 'Foxy da versão Withered', 'The Mangle',
++      'The Shadow', 'RWQFSFASXC', 'Nightmare Fredbear', 'Nightmare Foxy', 'Ballora', 'Funtime Foxy',
++      'Music Man', 'DJ Music Man', 'The Blob', 'Burntrap', 'Cassie', 'Gregory', 'Vanessa', 'Helpy',
++      'um animatrônico de manutenção', 'uma fantasia esquecida no depósito', 'um robô de palco experimental',
++      'um funcionário preso no elevador de serviço', 'uma criança olhando uma máquina de prêmios'
++    ],
++    actions: [
++      'aparecendo em uma gravação antiga que não deveria existir', 'seguindo o som de uma caixa de música',
++      'tentando imitar um funcionário humano', 'repetindo uma apresentação para um auditório vazio',
++      'escondendo uma peça importante dentro de uma máquina de arcade', 'reagindo a uma câmera que se move sozinha',
++      'percorrendo um corredor onde as placas mudam de lugar', 'tentando sair de um modo de demonstração defeituoso',
++      'deixando marcas de mãos no vidro embaçado', 'procurando a origem de uma voz no sistema de som'
++    ],
++    settings: [
++      'numa sala de manutenção iluminada por luz vermelha', 'numa área infantil lacrada há anos',
++      'numa loja de fantasias depois do fechamento', 'num elevador de serviço parado entre andares',
++      'num laboratório subterrâneo cheio de protótipos', 'num corredor de espelhos de um centro de entretenimento',
++      'numa sala de arcade com máquinas ainda ligadas', 'num palco coberto por lençóis brancos',
++      'numa sala de segurança com monitores fora de sincronia', 'num estacionamento subterrâneo sem sinal de celular'
++    ],
++    props: [
++      'com uma etiqueta de inventário escrita à mão', 'com um olho substituído por uma lente de câmera',
++      'com um crachá de funcionário de outra década', 'com uma fita cassete que toca ao contrário',
++      'com um mapa rabiscado no verso de um recibo', 'com uma peça de endoesqueleto que não corresponde ao modelo',
++      'com uma lanterna refletida em olhos imóveis', 'com uma pulseira de acesso piscando em vermelho'
++    ],
++    premade: [
++      'Desenhe uma câmera de segurança mostrando um corredor vazio, exceto por uma sombra impossível.',
++      'Crie o conceito de um animatrônico inspirado em uma coruja que só aparece durante apagões.',
++      'Um técnico encontra uma gravação de manutenção narrada por alguém que nunca trabalhou ali.',
++      'Desenhe a pizzaria durante uma festa normal, mas esconda cinco detalhes inquietantes na cena.',
++      'Um animatrônico tenta seguir uma rotina de limpeza enquanto algo altera o mapa do prédio.',
++      'Imagine um minijogo perdido de FNAF com cenário, interface e personagem próprios.',
++      'Desenhe dois animatrônicos tentando consertar um ao outro usando um manual infantil.',
++      'Crie um pôster de investigação paranormal para um estabelecimento abandonado.'
++    ]
++  },
++  jogos: {
++    subjects: [
++      'um cavaleiro minúsculo explorando uma cidade subterrânea', 'uma curandeira de um RPG tático',
++      'um chefe secreto que parece inofensivo', 'um mercador que troca memórias por moedas',
++      'uma criatura que imita o inventário do jogador', 'um construtor de mundos flutuantes',
++      'um piloto de uma nave feita de sucata', 'uma exploradora de ruínas inundadas',
++      'um NPC que percebe estar dentro de um jogo', 'um guardião de checkpoint cansado',
++      'uma equipe de aventureiros com classes incompatíveis', 'um ferreiro que fabrica armas amaldiçoadas',
++      'um espírito que vive dentro de um cartucho antigo', 'um robô companheiro com falhas de personalidade',
++      'uma criatura pacífica confundida com um chefe final', 'um mensageiro que atravessa mapas impossíveis',
++      'um caçador de monstros aposentado', 'uma princesa que prefere construir máquinas',
++      'um mago que só consegue conjurar objetos cotidianos', 'um personagem secreto desbloqueado por engano'
++    ],
++    actions: [
++      'explorando uma área que só aparece quando o jogo é pausado', 'negociando com um chefe em vez de lutar',
++      'tentando atravessar uma fase sem coletar nenhum item', 'descobrindo uma passagem atrás da tela de créditos',
++      'construindo um abrigo durante uma chuva de meteoros', 'protegendo um NPC durante uma missão opcional',
++      'reparando uma arma com peças de outros equipamentos', 'resolvendo um puzzle usando um item aparentemente inútil',
++      'tentando ensinar um monstro a jogar cartas', 'enfrentando uma versão corrompida do próprio mapa',
++      'fazendo uma pausa num acampamento entre duas batalhas', 'encontrando um atalho que muda toda a história'
++    ],
++    settings: [
++      'numa vila que fica dentro de uma árvore colossal', 'num menu de jogo abandonado',
++      'numa masmorra construída ao redor de um relógio', 'numa estação de salvamento no fim do universo',
++      'num mercado entre fases', 'num bioma onde a gravidade muda a cada minuto',
++      'numa arena coberta por flores gigantes', 'numa cidade de NPCs depois que o jogador sai',
++      'numa biblioteca que contém mapas de jogos inexistentes', 'numa ilha gerada por um erro de programação'
++    ],
++    props: [
++      'com um inventário cheio de itens sem descrição', 'com uma espada que muda conforme o humor',
++      'com um mapa que revela lugares já esquecidos', 'com uma poção rotulada como "não beber"',
++      'com uma moeda que compra uma única lembrança', 'com um controle antigo coberto de runas',
++      'com uma mochila que contém uma sala inteira', 'com um troféu por uma conquista impossível'
++    ],
++    premade: [
++      'Desenhe uma tela de seleção de personagem para um jogo que nunca existiu.',
++      'Crie um chefe final que só pode ser derrotado ajudando-o a realizar um sonho.',
++      'Imagine a rotina dos NPCs de uma cidade quando ninguém está jogando.',
++      'Desenhe uma área secreta escondida atrás dos créditos de um jogo fictício.',
++      'Um item considerado inútil se torna a peça mais importante de uma aventura.',
++      'Crie uma evolução alternativa para uma criatura de RPG, com nome e habilidades próprias.',
++      'Desenhe uma batalha em que o cenário muda de gênero artístico a cada turno.',
++      'Imagine uma equipe multiplayer em que cada integrante acredita estar em um jogo diferente.'
++    ]
++  },
++  cartoons: {
++    subjects: [
++      'um detetive que só resolve mistérios por acidente', 'uma bruxa adolescente que trabalha numa lanchonete',
++      'um cachorro que administra um hotel mal-assombrado', 'um alienígena tentando entender o recreio escolar',
++      'um vilão de desenho animado em seu dia de folga', 'um mascote que saiu do próprio comercial',
++      'um inventor cuja máquina transforma emoções em objetos', 'um fantasma tímido que tem medo de pessoas',
++      'um grupo de amigos que encontrou uma porta no céu', 'um gato cósmico que perdeu as próprias estrelas',
++      'um monstro gigante que só quer trabalhar numa floricultura', 'um robô que aprende humor com programas antigos'
++    ],
++    actions: [
++      'tentando esconder uma catástrofe atrás de uma cortina minúscula', 'discutindo com a própria sombra',
++      'participando de uma competição com regras que mudam a cada rodada', 'tentando devolver a lua ao lugar',
++      'transformando uma tarefa doméstica numa aventura épica', 'fazendo amizade com o antagonista do episódio',
++      'escapando de um cenário que está sendo apagado', 'tentando manter a calma durante uma chuva de objetos falantes',
++      'organizando uma festa surpresa para alguém que prevê o futuro', 'explicando uma piada para uma criatura de outra dimensão'
++    ],
++    settings: [
++      'num bairro onde cada casa pertence a um gênero de desenho diferente', 'num parque com gravidade opcional',
++      'numa escola construída dentro de um dirigível', 'num supermercado que vende coisas abstratas',
++      'num estúdio de animação abandonado', 'numa cidade onde os fundos se desenham sozinhos',
++      'numa praia com ondas quadradas', 'num museu de objetos que ainda não foram inventados'
++    ],
++    props: [
++      'com um martelo que produz efeitos sonoros escritos', 'com uma mochila que solta objetos aleatórios',
++      'com uma placa que muda de mensagem conforme o humor', 'com um controle remoto para o clima',
++      'com um mapa desenhado por uma criança', 'com um chapéu que altera o estilo visual de quem usa'
++    ],
++    premade: [
++      'Desenhe uma perseguição em que os personagens atravessam estilos de animação diferentes.',
++      'Crie um episódio de cartoon contado inteiramente pelo cenário, sem mostrar rostos.',
++      'Um vilão tenta tirar férias, mas o universo continua tratando tudo como uma batalha final.',
++      'Desenhe uma cidade onde as leis da física dependem da piada do momento.',
++      'Imagine o design de um personagem secundário que roubaria a cena em qualquer episódio.',
++      'Crie um pôster de uma série animada sobre uma equipe de monstros que trabalha numa biblioteca.'
++    ]
++  },
++  'slice-life': {
++    subjects: [
++      'dois colegas dividindo o último guarda-chuva', 'uma estudante decorando o caderno antes da aula',
++      'um entregador que conhece todos os gatos do bairro', 'uma pessoa aprendendo a cozinhar com uma receita antiga',
++      'uma amizade que começa numa lavanderia', 'um músico praticando numa varanda',
++      'uma pessoa esperando o primeiro ônibus do dia', 'um grupo de amigos preparando uma surpresa simples',
++      'uma barista que desenha nos copos dos clientes', 'um vizinho cuidando das plantas de outra pessoa',
++      'alguém reencontrando uma carta esquecida', 'uma família montando móveis numa casa nova',
++      'duas pessoas estudando juntas numa biblioteca vazia', 'um ciclista parando para observar o pôr do sol'
++    ],
++    actions: [
++      'compartilhando fones de ouvido no caminho para casa', 'tentando salvar um bolo que cresceu demais',
++      'trocando livros com bilhetes escondidos nas páginas', 'aprendendo o nome de uma constelação',
++      'pintando vasos para uma pequena varanda', 'fazendo compras para um jantar improvisado',
++      'recolhendo folhas depois de uma chuva de outono', 'organizando fotos antigas numa tarde silenciosa',
++      'deixando uma mensagem gentil para um desconhecido', 'treinando uma apresentação diante de um espelho',
++      'esperando o amigo terminar um turno de trabalho', 'tentando capturar a luz perfeita numa fotografia'
++    ],
++    settings: [
++      'numa cafeteria quase vazia ao amanhecer', 'numa estação de trem durante a garoa',
++      'numa varanda cheia de plantas', 'numa livraria pequena em dia de promoção',
++      'numa cozinha iluminada pelo sol da tarde', 'numa rua residencial decorada para um festival',
++      'numa biblioteca com janelas enormes', 'numa praça depois que as barracas fecharam',
++      'numa loja de discos usados', 'numa lavanderia com cadeiras coloridas',
++      'num telhado onde se veem as luzes da cidade', 'num mercado de bairro no fim do expediente'
++    ],
++    props: [
++      'com uma sacola de pães ainda quentes', 'com um guarda-chuva transparente cheio de adesivos',
++      'com um caderno cheio de desenhos nas margens', 'com uma câmera instantânea e fotos borradas',
++      'com uma caneca herdada de alguém querido', 'com uma flor prensada entre as páginas de um livro',
++      'com uma caixa de almoço decorada à mão', 'com um bilhete dobrado em formato de estrela'
++    ],
++    premade: [
++      'Desenhe uma conversa silenciosa entre duas pessoas que esperam o mesmo ônibus todos os dias.',
++      'Uma cafeteria fecha por causa da chuva e os clientes acabam contando histórias uns aos outros.',
++      'Crie uma página de mangá sobre um dia comum que se torna inesquecível por um detalhe pequeno.',
++      'Desenhe a mesma rua em quatro horários diferentes, mostrando como ela muda ao longo do dia.',
++      'Duas pessoas trocam livros sem se conhecer e deixam mensagens escondidas nas páginas.',
++      'Imagine uma amizade contada apenas por objetos deixados um para o outro.',
++      'Desenhe uma noite de estudos em grupo vista da perspectiva do gato da biblioteca.',
++      'Crie uma cena aconchegante em que ninguém fala, mas todos demonstram cuidado por alguém.'
++    ]
++  },
++  pokemon: {
++    subjects: [
++      'um treinador especializado em Pokémon fantasmas', 'uma pesquisadora de formas regionais',
++      'um líder de ginásio que trabalha como padeiro', 'um cuidador de Pokémon recém-nascidos',
++      'um fotógrafo de Pokémon selvagens', 'um rival que prefere batalhas em dupla',
++      'um criador de Pokébolas artesanais', 'um guarda-florestal acompanhado de Pokémon insetos',
++      'um campeão aposentado que abriu uma escola', 'um Pokémon lendário escondido numa cidade comum',
++      'um grupo de Pokémon organizando o próprio festival', 'um treinador que viaja sem desafiar ginásios'
++    ],
++    actions: [
++      'ajudando um Pokémon perdido a encontrar seu bando', 'preparando uma equipe para uma batalha na chuva',
++      'registrando uma evolução nunca documentada', 'montando um abrigo para Pokémon durante uma tempestade',
++      'participando de um concurso de beleza com uma estratégia inesperada', 'treinando movimentos numa praia deserta',
++      'investigando pegadas que mudam de forma', 'fazendo amizade com um Pokémon que teme as Pokébolas',
++      'preparando comida para uma equipe inteira', 'descobrindo um caminho secreto numa caverna cristalina'
++    ],
++    settings: [
++      'num centro Pokémon de uma cidade costeira', 'numa reserva natural coberta por névoa',
++      'num ginásio construído dentro de um observatório', 'num mercado noturno especializado em itens de treinador',
++      'numa trilha de montanha durante a migração de Pokémon', 'num laboratório de pesquisa à beira-mar',
++      'num festival de lanternas com Pokémon luminosos', 'numa estação de trem onde treinadores trocam histórias'
++    ],
++    props: [
++      'com uma Pokédex coberta de anotações', 'com uma Pokébola artesanal feita de madeira',
++      'com um mapa de habitats desenhado à mão', 'com uma faixa de competição cheia de medalhas',
++      'com uma bolsa de frutas para Pokémon', 'com um amuleto encontrado numa ruína antiga'
++    ],
++    premade: [
++      'Crie um conceito de forma regional para um Pokémon e mostre o ambiente que a inspirou.',
++      'Desenhe um centro Pokémon durante uma noite de tempestade, com todos buscando abrigo.',
++      'Um líder de ginásio prepara um desafio baseado em música, luz e trabalho em equipe.',
++      'Imagine como seria um dia de folga de um Pokémon lendário disfarçado de animal comum.',
++      'Desenhe uma equipe de Pokémon ajudando a reconstruir uma ponte depois de uma enchente.',
++      'Crie uma ficha ilustrada de uma espécie fictícia: habitat, comportamento, alimentação e evolução.',
++      'Um treinador chega a uma cidade onde as batalhas foram substituídas por concursos de invenções.',
++      'Desenhe a perspectiva de um Pokémon observando seu treinador preparar a mochila para partir.'
++    ]
++  },
++  'anime-manga': {
++    subjects: [
++      'uma protagonista de magical girl que trabalha à noite', 'um rival que secretamente admira o protagonista',
++      'um estudante transferido que conhece o futuro', 'uma equipe de pilotos de mecha em treinamento',
++      'uma detetive adolescente com um caderno de pistas', 'um espadachim que perdeu a vontade de lutar',
++      'uma idol que esconde uma identidade sobrenatural', 'um cozinheiro de torneios de fantasia',
++      'um clube escolar dedicado a fenômenos inexplicáveis', 'um protagonista de esporte que prefere ser treinador',
++      'um mensageiro entre mundos que odeia viajar', 'uma aprendiz de alquimista com um familiar desastrado'
++    ],
++    actions: [
++      'fazendo uma promessa durante o último trem da noite', 'treinando uma técnica que só funciona quando está calmo',
++      'tentando confessar um segredo e sendo interrompido', 'enfrentando o rival numa competição inesperada',
++      'desenhando o próprio uniforme de transformação', 'investigando uma lenda contada pelos alunos mais velhos',
++      'protegendo um festival escolar de uma ameaça invisível', 'descobrindo que o mascote da equipe é um espírito antigo',
++      'tentando consertar um mecha com peças de um robô doméstico', 'se despedindo de alguém antes de uma longa viagem'
++    ],
++    settings: [
++      'numa estação ferroviária sob as cerejeiras', 'numa escola construída sobre um santuário antigo',
++      'numa arena de torneio iluminada por hologramas', 'numa cidade costeira durante o festival de verão',
++      'numa oficina de mechas cheia de desenhos técnicos', 'numa sala do clube depois que todos foram embora',
++      'numa ponte onde o tempo passa mais devagar', 'numa loja de conveniência às duas da manhã'
++    ],
++    props: [
++      'com um chaveiro que guarda uma promessa', 'com um caderno de storyboard cheio de rasuras',
++      'com uma espada cerimonial que reage às emoções', 'com um uniforme redesenhado à mão',
++      'com um celular cheio de mensagens não enviadas', 'com um emblema de equipe rachado',
++      'com uma fita de cabelo herdada de uma amiga', 'com um amuleto que vibra perto de portais'
++    ],
++    premade: [
++      'Desenhe uma página de mangá sem diálogos em que uma amizade muda para sempre.',
++      'Crie a transformação de uma magical girl inspirada em um fenômeno astronômico.',
++      'Dois rivais precisam cuidar juntos de uma criatura mágica durante um fim de semana.',
++      'Desenhe um mecha construído para uma tarefa pacífica, mas com aparência de máquina de guerra.',
++      'Crie um pôster de anime para uma série sobre um clube escolar que investiga lendas urbanas.',
++      'Uma cena de despedida é mostrada por meio de objetos, expressões e enquadramentos, sem texto.',
++      'Desenhe a versão adulta de um personagem e mostre o que mudou e o que permaneceu igual.',
++      'Imagine o episódio de praia de uma série de fantasia sombria, com uma pista escondida no fundo.'
++    ]
++  },
++  'mitologia-grega': {
++    subjects: [
++      'Hécate segurando tochas numa encruzilhada', 'Héstia cuidando de uma chama sagrada',
++      'Íris atravessando o céu como mensageira', 'Hipnos caminhando por um jardim silencioso',
++      'Nêmesis diante de uma balança de bronze', 'Tique girando uma roda de fortuna',
++      'Quíron ensinando um jovem herói', 'Atalanta numa corrida lendária', 'Ariadne guardando um fio encantado',
++      'Orfeu tocando para criaturas do submundo', 'Dédalo testando uma invenção alada', 'Cassandra tentando ser ouvida',
++      'Perséfone entre um jardim florido e o mundo subterrâneo', 'Eris deixando uma maçã dourada num banquete',
++      'as Moiras tecendo um destino', 'um sátiro perdido numa cidade moderna'
++    ],
++    actions: [
++      'negociando com um oráculo que responde em enigmas', 'atravessando um rio guardado por uma criatura antiga',
++      'organizando um banquete no Olimpo', 'escondendo um objeto sagrado entre mortais',
++      'desafiando uma profecia sem tentar derrotar o destino', 'construindo um labirinto para proteger um segredo',
++      'guiando viajantes por uma noite sem estrelas', 'participando de uma competição entre divindades'
++    ],
++    settings: [
++      'num mercado de Atenas durante um festival', 'num jardim secreto de Perséfone',
++      'numa oficina de Hefesto cheia de autômatos', 'numa biblioteca de pergaminhos proféticos',
++      'numa praia onde as ondas trazem mensagens', 'numa encruzilhada iluminada por três luas'
++    ],
++    props: [
++      'com uma moeda para pagar a travessia do além', 'com um fio que brilha quando alguém mente',
++      'com uma máscara de teatro rachada', 'com uma maçã dourada coberta de inscrições',
++      'com uma pequena estátua que muda de expressão', 'com uma lira que faz flores nascerem'
++    ],
++    premade: [
++      'Desenhe Hécate ajudando uma pessoa perdida numa cidade moderna durante a madrugada.',
++      'Crie uma cena em que as Moiras discutem como corrigir um erro no destino de um herói.',
++      'Imagine o labirinto de Dédalo como uma instalação artística cheia de mecanismos impossíveis.',
++      'Desenhe Perséfone mostrando a primavera a alguém que nunca saiu do submundo.',
++      'Um banquete olímpico dá errado quando um artefato começa a revelar segredos de todos.',
++      'Crie um bestiário ilustrado de três criaturas que poderiam proteger um templo grego.'
++    ]
++  },
++  'mitologia-nordica': {
++    subjects: [
++      'Sif trançando os cabelos dourados', 'Skadi caçando sob uma aurora', 'Iduna guardando as maçãs da juventude',
++      'Heimdall ouvindo sons entre os mundos', 'Tyr segurando uma lança cerimonial', 'Hel diante dos portões do reino frio',
++      'Frigg observando fios do destino', 'Balder caminhando por um campo luminoso', 'Eir preparando remédios divinos',
++      'um anão ferreiro de Nidavellir', 'uma valquíria escolhendo uma trilha no céu', 'um corvo mensageiro de Odin'
++    ],
++    actions: [
++      'reparando uma ponte entre os mundos', 'forjando um objeto que guarda uma lembrança',
++      'preparando um navio para navegar por estrelas', 'negociando com um gigante da montanha',
++      'protegendo uma aldeia durante a noite polar', 'contando histórias ao redor de uma fogueira',
++      'procurando uma runa perdida em ruínas cobertas de gelo', 'tentando impedir uma profecia sem quebrar um juramento'
++    ],
++    settings: [
++      'num salão viking durante uma tempestade de neve', 'numa forja subterrânea iluminada por magma',
++      'num bosque de árvores tão altas que sustentam nuvens', 'numa costa onde navios parecem navegar pelo céu',
++      'num santuário coberto de runas brilhantes', 'numa ponte suspensa entre dois reinos'
++    ],
++    props: [
++      'com uma runa gravada numa pedra de gelo', 'com um escudo que reflete memórias',
++      'com um mapa dos nove mundos costurado em couro', 'com uma maçã dourada dentro de uma caixa rúnica',
++      'com uma lança cuja ponta parece uma estrela', 'com um chifre de bebida decorado com animais entrelaçados'
++    ],
++    premade: [
++      'Desenhe uma valquíria retornando de uma missão e deixando as armas na entrada de casa.',
++      'Crie um mapa ilustrado de uma rota secreta entre dois dos nove mundos.',
++      'Um ferreiro anão recebe a encomenda de criar algo que não possa ser usado como arma.',
++      'Imagine uma aldeia nórdica durante um festival sob uma aurora boreal viva.',
++      'Desenhe uma reunião em que deuses e gigantes precisam resolver uma disputa cotidiana.',
++      'Crie um amuleto rúnico e ilustre a lenda que explica sua origem.'
++    ]
++  },
++  'mitologia-japonesa': {
++    subjects: [
++      'Ame-no-Uzume dançando diante de uma caverna', 'Inari acompanhado por raposas mensageiras',
++      'Ryujin observando um jardim submarino', 'Jizo protegendo viajantes numa trilha',
++      'Oni tentando participar de um festival humano', 'Tengu treinando um aprendiz nas montanhas',
++      'uma kitsune disfarçada de dona de loja', 'um tanuki artesão de lanternas',
++      'um kappa que coleciona objetos perdidos', 'um kodama numa árvore urbana antiga',
++      'um yuki-onna numa estação de trem nevada', 'um tsukumogami despertando num antiquário'
++    ],
++    actions: [
++      'guiando espíritos por uma rua iluminada por lanternas', 'guardando uma ponte durante uma chuva de verão',
++      'tentando devolver um objeto encantado ao seu dono', 'preparando oferendas para um festival local',
++      'atravessando um portal escondido num torii', 'resolvendo uma disputa entre yokai vizinhos',
++      'ensinando uma criança a reconhecer sinais de um espírito protetor', 'se escondendo numa loja durante um aguaceiro'
++    ],
++    settings: [
++      'num santuário entre árvores de bambu', 'numa rua comercial depois da meia-noite',
++      'numa ponte vermelha coberta de pétalas', 'num banho termal frequentado por espíritos',
++      'numa estação antiga durante a neve', 'numa floresta onde as lanternas flutuam sozinhas'
++    ],
++    props: [
++      'com uma máscara de festival pintada à mão', 'com um sino que revela presenças invisíveis',
++      'com um guarda-chuva de papel que anda sozinho', 'com uma caixa de oferendas cheia de bilhetes',
++      'com uma lanterna que abriga um pequeno espírito', 'com um amuleto de proteção preso à mochila'
++    ],
++    premade: [
++      'Desenhe um yokai trabalhando discretamente numa loja de conveniência moderna.',
++      'Crie um encontro entre um kodama e uma árvore plantada no meio de uma cidade grande.',
++      'Uma kitsune precisa escolher entre manter seu disfarce ou ajudar alguém que a reconheceu.',
++      'Desenhe um festival noturno visto pelos olhos de um espírito que nunca saiu da floresta.',
++      'Imagine um antiquário onde cada objeto antigo desperta depois que a loja fecha.',
++      'Crie um yokai original inspirado em um objeto cotidiano esquecido numa estação.'
++    ]
++  },
++  'mitologia-romana': {
++    subjects: [
++      'Vesta protegendo o fogo de uma cidade', 'Jano olhando simultaneamente para duas portas',
++      'Ceres cuidando de uma colheita ameaçada', 'Mercúrio levando uma mensagem impossível',
++      'Diana guiando animais por um bosque sagrado', 'Vulcano trabalhando numa oficina subterrânea',
++      'Fortuna girando uma roda coberta de símbolos', 'Morpheus moldando sonhos como esculturas',
++      'uma vestal guardando um segredo do templo', 'um augúrio interpretando o voo dos pássaros'
++    ],
++    actions: [
++      'preparando uma procissão durante um eclipse', 'restaurando uma estátua que começou a falar',
++      'entregando uma mensagem entre cidades rivais', 'protegendo uma estrada antiga de criaturas noturnas',
++      'negociando com um espírito doméstico', 'organizando um festival para agradecer uma boa colheita'
++    ],
++    settings: [
++      'num fórum romano durante uma celebração', 'num templo circular ao amanhecer',
++      'numa estrada de pedras cercada por ciprestes', 'numa oficina divina sob o Monte Etna',
++      'num jardim de estátuas que mudam de posição', 'numa casa romana onde os lares estão despertos'
++    ],
++    props: [
++      'com uma moeda marcada por duas faces diferentes', 'com uma pequena estátua de um lar protetor',
++      'com um elmo decorado com folhas de louro', 'com um pergaminho selado por cera vermelha',
++      'com uma lâmpada que nunca se apaga', 'com uma balança usada para medir promessas'
++    ],
++    premade: [
++      'Desenhe Jano abrindo uma porta para o passado e outra para um futuro desconhecido.',
++      'Crie uma cena cotidiana numa casa romana protegida por espíritos domésticos.',
++      'Mercúrio perde uma mensagem divina e precisa recuperá-la num mercado lotado.',
++      'Imagine um festival romano em que as estátuas da cidade ganham vida por uma noite.',
++      'Desenhe Vulcano criando um objeto útil para alguém que nunca irá conhecê-lo.',
++      'Crie um pequeno altar doméstico e conte visualmente a história de quem o mantém.'
++    ]
++  },
++  'mitologia-celta': {
++    subjects: [
++      'Arianrhod diante de uma roda de estrelas', 'Rhiannon cavalgando entre mundos',
++      'Manannán mac Lir abrindo uma névoa marítima', 'Morrígan observando um campo de batalha distante',
++      'Cú Chulainn descansando após uma prova impossível', 'um bardo que consegue acordar memórias com música',
++      'uma selkie dividida entre a costa e o oceano', 'um guardião feérico de um círculo de pedras'
++    ],
++    actions: [
++      'negociando passagem por uma colina encantada', 'tocando uma melodia que muda a estação do ano',
++      'protegendo uma fonte sagrada durante a noite', 'seguindo luzes que aparecem apenas na neblina',
++      'tentando devolver uma promessa esquecida ao mundo feérico', 'reunindo clãs para uma celebração de colheita'
++    ],
++    settings: [
++      'num círculo de pedras sob uma lua enorme', 'numa costa verde coberta por névoa',
++      'num bosque onde o tempo corre de maneira diferente', 'num salão de madeira durante um festival de música',
++      'numa colina oca iluminada por cogumelos', 'numa ponte antiga entre o mundo humano e o feérico'
++    ],
++    props: [
++      'com um broche em forma de espiral tripla', 'com uma harpa feita de madeira encantada',
++      'com uma pedra que guarda o som de uma promessa', 'com um manto tecido de neblina',
++      'com uma taça que reflete a estação errada', 'com um ramo de espinheiro florido fora de época'
++    ],
++    premade: [
++      'Desenhe um bardo tocando para uma floresta que responde com luzes entre as árvores.',
++      'Uma selkie encontra sua antiga pele guardada num museu costeiro moderno.',
++      'Crie um mapa de uma colina feérica com caminhos que mudam conforme as escolhas do viajante.',
++      'Imagine uma festa de colheita em que humanos e seres feéricos precisam cooperar.',
++      'Desenhe uma fonte sagrada e três oferendas deixadas por viajantes de épocas diferentes.'
++    ]
++  },
++  'mitologia-chinesa': {
++    subjects: [
++      'Chang’e cuidando de um jardim lunar', 'Nezha treinando com suas rodas de fogo',
++      'Nüwa reparando uma rachadura no céu', 'Fuxi desenhando símbolos ancestrais',
++      'Jingwei carregando uma pedrinha até o mar', 'um qilin visitando uma vila durante a primavera',
++      'um guardião celestial organizando os ventos', 'um espírito raposa trabalhando como bibliotecário'
++    ],
++    actions: [
++      'preparando lanternas para um festival à beira do rio', 'atravessando uma ponte feita de nuvens',
++      'protegendo um pergaminho que reescreve a própria história', 'tentando acalmar um dragão adormecido',
++      'guiando viajantes por uma montanha coberta de névoa', 'restaurando uma constelação que perdeu uma estrela'
++    ],
++    settings: [
++      'num palácio suspenso entre nuvens douradas', 'num jardim lunar com lagos espelhados',
++      'numa vila de lanternas vermelhas durante a noite', 'numa montanha onde vivem imortais',
++      'numa ponte de jade sobre um mar de nuvens', 'num mercado celestial de objetos encantados'
++    ],
++    props: [
++      'com um pergaminho que flutua ao vento', 'com uma lanterna contendo uma pequena galáxia',
++      'com uma fita de seda que controla a direção do vento', 'com uma pérola de dragão rachada',
++      'com um pincel que transforma desenhos em criaturas', 'com um selo de jade coberto de caracteres luminosos'
++    ],
++    premade: [
++      'Desenhe Jingwei transformando uma tarefa impossível numa rotina tranquila à beira-mar.',
++      'Crie uma cidade celestial onde cada ponte liga uma estação do ano diferente.',
++      'Nezha precisa ajudar a organizar um festival sem usar nenhum de seus poderes.',
++      'Imagine um qilin visitando uma escola moderna e sendo confundido com o mascote.',
++      'Desenhe um pergaminho que mostra um futuro diferente para cada pessoa que o abre.'
++    ]
++  },
++  'mitologia-hindu': {
++    subjects: [
++      'Saraswati tocando vina num lago tranquilo', 'Hanuman carregando uma montanha de ervas',
++      'Durga montada em seu leão durante uma tempestade', 'Krishna tocando flauta entre árvores floridas',
++      'Parvati meditando numa encosta do Himalaia', 'Kartikeya conduzindo um pavão por um céu estrelado',
++      'Garuda atravessando nuvens douradas', 'um naga guardando um rio subterrâneo'
++    ],
++    actions: [
++      'protegendo uma biblioteca de manuscritos antigos', 'guiando viajantes por uma trilha nas montanhas',
++      'restaurando o equilíbrio de um jardim celestial', 'ensinando música a criaturas da floresta',
++      'protegendo uma aldeia durante uma monção', 'resolvendo uma disputa sem recorrer à força'
++    ],
++    settings: [
++      'num templo à beira de um rio ao amanhecer', 'num jardim celestial cheio de flores luminosas',
++      'numa trilha do Himalaia entre nuvens baixas', 'numa biblioteca de folhas de palmeira',
++      'num mercado festivo coberto de guirlandas', 'num lago onde as estrelas aparecem durante o dia'
++    ],
++    props: [
++      'com uma vina decorada com flores', 'com uma guirlanda que nunca perde o perfume',
++      'com um manuscrito protegido por uma caixa de madeira', 'com um pequeno sino cerimonial',
++      'com uma concha que ecoa como um trovão distante', 'com uma flor de lótus refletindo constelações'
++    ],
++    premade: [
++      'Desenhe Saraswati inspirando uma jovem artista que perdeu a confiança no próprio trabalho.',
++      'Crie um cenário de festival com luzes, flores, tecidos e instrumentos musicais.',
++      'Hanuman encontra uma cidade moderna e precisa localizar uma única planta medicinal.',
++      'Desenhe um naga guardando uma biblioteca submersa de histórias esquecidas.',
++      'Imagine um jardim celestial que muda de aparência conforme a música tocada nele.'
++    ]
++  },
++  'mitologias-mesoamericanas': {
++    subjects: [
++      'Ix Chel tecendo um manto de nuvens', 'Kukulkán descendo por uma pirâmide de luz',
++      'Xólotl guiando viajantes por uma passagem subterrânea', 'uma sacerdotisa observando Vênus no céu',
++      'um guardião jaguar de uma cidade antiga', 'um artesão criando máscaras cerimoniais',
++      'um mensageiro atravessando uma selva sagrada', 'um espírito do milho protegendo uma colheita'
++    ],
++    actions: [
++      'observando o alinhamento de estrelas sobre um templo', 'protegendo sementes raras de uma tempestade',
++      'descobrindo uma escadaria escondida sob raízes', 'preparando uma celebração de renovação',
++      'guiando uma alma por uma ponte entre mundos', 'registrando ciclos celestes num códice ilustrado'
++    ],
++    settings: [
++      'num observatório de pedra coberto de vinhas', 'numa praça cerimonial durante o nascer do sol',
++      'numa selva iluminada por vaga-lumes', 'numa cidade antiga refletida num lago',
++      'numa caverna com pinturas de constelações', 'num mercado de tecidos, cerâmicas e pigmentos'
++    ],
++    props: [
++      'com um códice pintado em cores minerais', 'com uma máscara de mosaico turquesa',
++      'com um calendário gravado numa pedra circular', 'com uma pequena espiga de milho dourada',
++      'com um espelho de obsidiana', 'com um pingente em forma de serpente emplumada'
++    ],
++    premade: [
++      'Desenhe um observatório antigo usado para acompanhar uma chuva de meteoros.',
++      'Crie um códice ilustrado que registra a jornada de uma criatura lendária.',
++      'Imagine uma cidade mesoamericana fantástica construída em terraços sobre uma floresta.',
++      'Desenhe um guardião jaguar protegendo um jardim de plantas medicinais.',
++      'Uma máscara cerimonial ganha vida e tenta encontrar a pessoa que a criou.'
++    ]
++  },
++  'criaturas-fantasticas': {
++    subjects: [
++      'um dragão bibliotecário que cataloga sonhos', 'uma quimera que muda de aparência conforme o clima',
++      'um grifo mensageiro com medo de altura', 'uma criatura marinha que coleciona sinos',
++      'um golem feito de cerâmica quebrada', 'uma fada mecânica que conserta relógios',
++      'um basilisco que transforma objetos em vidro colorido', 'um cervo espectral que aparece em estações abandonadas',
++      'um pequeno gigante que cultiva jardins em miniatura', 'uma criatura de sombras que protege crianças perdidas'
++    ],
++    actions: [
++      'tentando se misturar entre animais comuns', 'construindo um ninho com objetos encontrados',
++      'protegendo uma passagem que ninguém mais consegue ver', 'fazendo amizade com um explorador desconfiado',
++      'aprendendo a controlar uma habilidade recém-descoberta', 'guardando um segredo dentro de uma concha',
++      'procurando uma espécie semelhante numa floresta antiga', 'tentando devolver uma estrela caída ao céu'
++    ],
++    settings: [
++      'numa estufa abandonada cheia de plantas luminosas', 'numa estação de trem que só aparece na neblina',
++      'numa biblioteca construída dentro de uma árvore', 'numa praia de areia negra sob duas luas',
++      'numa cidade de telhados flutuantes', 'num jardim de estátuas que respiram lentamente'
++    ],
++    props: [
++      'com um ovo coberto de runas', 'com uma coleira feita de pequenas constelações',
++      'com uma chave grande demais para qualquer porta comum', 'com um frasco de neblina engarrafada',
++      'com uma pena que muda de cor quando alguém mente', 'com um sino que chama criaturas invisíveis'
++    ],
++    premade: [
++      'Crie uma criatura fantástica cuja habilidade mais poderosa também seja sua maior inconveniência.',
++      'Desenhe um bestiário com três espécies que compartilham o mesmo habitat.',
++      'Um dragão minúsculo abre uma oficina para consertar objetos mágicos quebrados.',
++      'Imagine uma criatura que protege uma cidade sem que seus habitantes saibam de sua existência.',
++      'Desenhe a mesma criatura em três fases de crescimento e mostre como seu habitat muda.'
++    ]
++  },
++  'cultura-pop': {
++    subjects: [
++      'um colecionador de fitas VHS que encontra uma gravação impossível', 'uma estrela pop de uma cidade futurista',
++      'um apresentador de programa de auditório interdimensional', 'um cosplayer que precisa improvisar uma peça do traje',
++      'um crítico de cinema que vê personagens saindo da tela', 'uma mascote de cereal que quer ser levada a sério',
++      'um DJ que mistura sons de cidades diferentes', 'um fã criando um mural de referências escondidas'
++    ],
++    actions: [
++      'organizando uma convenção em que os universos se misturam', 'gravando um videoclipe num cenário abandonado',
++      'tentando identificar uma referência misteriosa num pôster', 'preparando uma maratona de filmes com amigos',
++      'criando uma capa de álbum para uma banda fictícia', 'entrevistando personagens que saíram de uma tela antiga'
++    ],
++    settings: [
++      'numa locadora de filmes que aparece apenas à noite', 'numa convenção iluminada por letreiros neon',
++      'num estúdio de televisão com portas para outras dimensões', 'num fliperama retrô escondido sob um shopping',
++      'numa loja de discos durante uma tempestade', 'numa praça coberta de cartazes de eventos fictícios'
++    ],
++    props: [
++      'com uma fita cassete que contém uma música inédita', 'com um pôster cheio de referências escondidas',
++      'com um ingresso para um evento que nunca aconteceu', 'com um walkman decorado com adesivos',
++      'com uma câmera instantânea que fotografa o futuro', 'com uma coleção de pins de universos imaginários'
++    ],
++    premade: [
++      'Crie um pôster de filme fictício que misture três gêneros completamente diferentes.',
++      'Desenhe uma convenção de cultura pop vista pelos olhos de alguém que caiu ali por engano.',
++      'Imagine uma locadora onde cada fita transporta quem assiste para um universo diferente.',
++      'Crie a capa de um álbum para uma banda formada por personagens de desenhos animados.',
++      'Desenhe uma vitrine cheia de objetos de franquias que não existem, mas parecem familiares.'
++    ]
++  }
++};
++
++function mergeUnique(target: string[], additions: string[]): void {
++  const seen = new Set(target.map((value) => value.normalize('NFC').trim().toLocaleLowerCase('pt-BR')));
++  for (const value of additions) {
++    const key = value.normalize('NFC').trim().toLocaleLowerCase('pt-BR');
++    if (key && !seen.has(key)) {
++      target.push(value);
++      seen.add(key);
++    }
++  }
++}
++
++export function aplicarPatch4(themes: ThemeData[]): ThemeData[] {
++  for (const theme of themes) {
++    const expansion = PATCH4[theme.id];
++    if (!expansion) continue;
++    for (const key of ['subjects', 'adjectives', 'actions', 'settings', 'props', 'premade'] as const) {
++      const additions = expansion[key];
++      if (additions?.length) mergeUnique(theme[key], additions);
++    }
++  }
++  return themes;
++}

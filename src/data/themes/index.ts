@@ -6,13 +6,14 @@ import { cartoons, culturaPop, criaturasFantasticas, dc, fnaf, jogos, marvel, mi
 import { aplicarExpansaoProfunda } from './expansaoProfunda';
 import { aplicarPatch3 } from './patch3Profundo';
 import { animeManga, mitologiaCelta, mitologiaChinesa, mitologiaHindu, mitologiaRomana, mitologiasMesoamericanas, pokemon } from './expansaoUniversos';
+import { aplicarPatch4 } from './patch4Universos';
 
-export const BUILTIN_THEMES: ThemeData[] = aplicarPatch3(aplicarExpansaoProfunda([
+export const BUILTIN_THEMES: ThemeData[] = aplicarPatch4(aplicarPatch3(aplicarExpansaoProfunda([
   fantasia, espaco, terror, faroeste, lhamas, estudos, egito, noir,
   cyber, folclore, mar, comida, animais, cotidiano, pirata,
   marvel, dc, fnaf, jogos, cartoons, sliceLife, mitologiaGrega, mitologiaNordica,
   mitologiaJaponesa, culturaPop, criaturasFantasticas,
   mitologiaRomana, mitologiaCelta, mitologiaChinesa, mitologiaHindu, mitologiasMesoamericanas, animeManga, pokemon,
-]));
+])));
 
 export const DEFAULT_THEME_IDS = ['fantasia'];
