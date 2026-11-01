@@ -1,0 +1,161 @@
+import type { ThemeData } from '../../types';
+
+/** Temas inspirados na playlist enviada. Referências são títulos/climas; não reproduzimos letras. */
+export const PATCH6_THEMES: ThemeData[] = [
+  {
+    id: 'brasil-em-cancao', name: 'Brasil em Canção', emoji: '🎸', hue: 28,
+    blurb: 'Forró, MPB, rock nacional, pagode e histórias com cara de música brasileira.',
+    subjects: [
+      'um viajante que carrega uma saudade antiga', 'uma pessoa que escreve cartas que nunca envia',
+      'um sanfoneiro que conhece todas as histórias da cidade', 'uma dupla que se reencontra depois de anos',
+      'uma cantora de bar com voz de quem já viveu muita coisa', 'um personagem que parece ter saído de uma capa de disco dos anos 2000',
+      'um poeta que transforma qualquer conversa em refrão', 'um casal que se comunica por bilhetes',
+      'um dançarino de forró que perdeu o par antes da música começar', 'um músico de rua acompanhado por um cachorro',
+      'uma pessoa tentando superar um amor com dignidade duvidosa', 'um amigo que sempre aparece quando começa a tocar Skank',
+      'um morador de uma cidade pequena que sabe de todas as fofocas', 'uma pessoa que encontra o antigo amor numa rodoviária',
+      'um personagem com espírito de Cazuza e agenda de segunda-feira', 'um grupo de amigos numa viagem sem destino definido'
+    ],
+    adjectives: [
+      'com uma saudade que cabe numa mala', 'romântico sem admitir', 'com energia de último show da turnê',
+      'tentando disfarçar que decorou a música inteira', 'com jeito de quem vai dançar até o amanhecer',
+      'dramático como uma balada de rádio', 'com nostalgia de um verão que já acabou', 'feliz por fora e pensando em outra coisa'
+    ],
+    actions: [
+      'dançando forró no meio de uma praça', 'tentando transformar uma despedida em festa',
+      'cantando para alguém do outro lado da rua', 'reencontrando uma pessoa numa festa de interior',
+      'viajando sem saber exatamente onde vai descer', 'tentando esquecer alguém durante um karaokê',
+      'organizando um luau improvisado', 'tocando uma serenata para a pessoa errada',
+      'escrevendo uma carta de amor no verso de um recibo', 'fazendo as pazes depois de uma discussão boba',
+      'dançando sozinho quando começa a tocar sua música favorita', 'tentando seguir em frente numa cidade cheia de lembranças',
+      'contando uma história exagerada numa mesa de bar', 'pegando a estrada ao som de um clássico do rock brasileiro'
+    ],
+    settings: [
+      'numa festa junina iluminada por bandeirinhas', 'numa praça de cidade pequena ao entardecer',
+      'numa rodoviária durante uma chuva de verão', 'num bar com música ao vivo', 'numa estrada cercada por canaviais',
+      'numa praia depois que todo mundo foi embora', 'numa varanda com rede e rádio antigo',
+      'numa quermesse que parece não ter fim', 'numa rua de paralelepípedo durante uma serenata',
+      'num palco de festival no interior do Nordeste', 'numa lanchonete aberta de madrugada'
+    ],
+    props: [
+      'com uma sanfona antiga', 'segurando duas passagens de ônibus', 'com um violão cheio de adesivos',
+      'com uma fita cassete escrita “lado B”', 'com um buquê meio amassado', 'com uma jaqueta jeans de show',
+      'segurando um copo de refrigerante e um coração partido', 'com um rádio portátil tocando baixinho',
+      'com uma carta dobrada muitas vezes', 'com um par de botas de dançar forró'
+    ],
+    premade: [
+      'Desenhe uma cena inspirada em “Borboletas”: duas pessoas tentam conversar enquanto uma revoada atravessa a praça.',
+      'Crie a capa de um álbum de forró sobre alguém que pega o ônibus errado e encontra o amor da vida.',
+      'Imagine uma festa junina vista como o clímax de um grande musical brasileiro.',
+      'Desenhe uma rodoviária que reúne personagens de várias histórias de amor e despedida.',
+      'Crie um pôster de show para uma banda fictícia que mistura a energia de Skank, Charlie Brown Jr. e Capital Inicial.',
+      'Uma serenata começa romântica e termina com a rua inteira cantando junto.',
+      'Desenhe o cenário de uma música sobre saudade, usando apenas objetos para contar a história.',
+      'Imagine uma viagem de verão com a atmosfera de “Vamos Fugir” e “Céu Azul”.',
+      'Crie uma capa de disco chamada “Tareco, Mariola e Outras Pequenas Tragédias”.',
+      'Desenhe um casal dançando sozinho numa praça depois que a festa acabou.'
+    ]
+  },
+  {
+    id: 'indie-psicodelico', name: 'Indie & Psicodélico', emoji: '🌀', hue: 268,
+    blurb: 'Sonhos lúcidos, neon, romances estranhos e viagens mentais inspiradas no indie/alternativo.',
+    subjects: [
+      'um astronauta perdido dentro da própria memória', 'uma pessoa que conversa com seu reflexo',
+      'um detetive de sonhos', 'uma criatura feita de luz de letreiros', 'um casal que só se encontra em sonhos',
+      'um viajante do tempo preso numa tarde repetida', 'um músico que enxerga cores quando ouve sons',
+      'uma pessoa que mora numa casa que muda de formato', 'um alienígena tentando entender o amor humano',
+      'um personagem que parece viver dentro de um videoclipe', 'uma sombra que decidiu abandonar seu dono',
+      'um piloto dirigindo por uma cidade que não existe', 'um robô com nostalgia de uma infância que nunca teve',
+      'uma pessoa que encontra versões alternativas de si mesma', 'um gato que guia pessoas por dimensões paralelas'
+    ],
+    adjectives: [
+      'com um ar de sonho febril', 'levemente deslocado da realidade', 'com cores que parecem ter som',
+      'melancólico, mas dançante', 'com uma calma inquietante', 'como se estivesse lembrando de algo que nunca aconteceu',
+      'sob luzes neon e pensamentos acelerados', 'com estética de videoclipe alternativo'
+    ],
+    actions: [
+      'tentando descobrir se está acordado', 'atravessando uma cidade que se dobra sobre si mesma',
+      'dançando numa festa em que o tempo não passa', 'seguindo uma borboleta por um labirinto impossível',
+      'conversando com uma versão mais velha de si', 'tentando voltar para casa usando um mapa de sonhos',
+      'observando o mundo mudar de cor a cada batida', 'procurando alguém numa multidão de versões alternativas',
+      'pilotando um carro por uma estrada que atravessa o espaço', 'tentando manter os pés no chão enquanto tudo flutua',
+      'descobrindo que a cidade inteira está sincronizada com uma música', 'fugindo de uma festa que parece durar para sempre'
+    ],
+    settings: [
+      'numa cidade neon depois da meia-noite', 'num deserto roxo sob dois sóis', 'numa festa dentro de um aquário gigante',
+      'num quarto com paredes que respiram', 'numa estrada infinita sob um céu psicodélico',
+      'num fliperama abandonado que ainda funciona', 'numa estação de metrô construída dentro de um sonho',
+      'numa cobertura com vista para uma metrópole chuvosa', 'num campo de flores que brilham no escuro',
+      'numa dimensão onde as sombras têm vontade própria'
+    ],
+    props: [
+      'com um toca-fitas que grava sonhos', 'usando óculos com lentes caleidoscópicas', 'com uma câmera que fotografa o futuro',
+      'com um relógio derretendo', 'segurando uma flor que muda de cor conforme a música',
+      'com um capacete cheio de adesivos cósmicos', 'com um mapa desenhado em papel transparente',
+      'com um disco de vinil que gira sozinho', 'com um telefone que recebe chamadas de outras realidades'
+    ],
+    premade: [
+      'Imagine a atmosfera de “Let It Happen”: desenhe alguém aceitando uma transformação surreal e inevitável.',
+      'Crie um videoclipe para “The Less I Know The Better” sem mostrar literalmente uma apresentação musical.',
+      'Desenhe uma cidade que muda de arquitetura conforme a música que toca em cada bairro.',
+      'Uma pessoa acorda dentro de um videoclipe de indie rock e precisa encontrar a saída.',
+      'Crie uma capa de álbum psicodélico usando apenas uma paisagem e um objeto impossível.',
+      'Desenhe um encontro entre duas pessoas que só conseguem se ver quando sonham ao mesmo tempo.',
+      'Imagine “The Chain” como uma história visual sobre um grupo que tenta não se separar.',
+      'Crie um pôster de ficção científica com a sensação de “I Ran (So Far Away)”.',
+      'Desenhe uma festa em que cada convidado está preso numa versão diferente da mesma noite.',
+      'Transforme a sensação de “Sweater Weather” numa cena urbana fria, íntima e cinematográfica.'
+    ]
+  },
+  {
+    id: 'dark-pop-cinematico', name: 'Dark Pop & Cinemático', emoji: '🦇', hue: 335,
+    blurb: 'Monstros elegantes, anti-heróis, suspense, drama e estética de trilha sonora.',
+    subjects: [
+      'um vampiro que trabalha no turno da noite', 'uma pessoa que esconde um segredo sobrenatural',
+      'um anti-herói que está cansado de salvar o mundo', 'uma criatura que se alimenta de arrependimentos',
+      'um detetive que investiga a própria sombra', 'uma estrela pop com uma identidade secreta',
+      'um anjo expulso que abriu uma pequena cafeteria', 'um vilão que quer apenas uma vida tranquila',
+      'uma figura mascarada num baile decadente', 'um cientista que perdeu o controle da própria criação',
+      'uma pessoa que recebe cartas de alguém desaparecido', 'um monstro que tem medo do escuro',
+      'um artista que pinta cenas de crimes futuros', 'um herdeiro de uma mansão cheia de passagens secretas',
+      'um personagem que parece culpado, mas está tentando proteger alguém'
+    ],
+    adjectives: [
+      'com um sorriso perigosamente convincente', 'dramático como o último ato de um filme',
+      'com elegância sombria', 'tentando parecer inocente', 'com uma energia de anti-herói',
+      'sob uma luz vermelha de emergência', 'com um segredo prestes a escapar', 'calmo demais para a situação'
+    ],
+    actions: [
+      'fazendo um acordo que não deveria aceitar', 'fugindo de uma criatura que conhece seu nome',
+      'investigando uma festa em que ninguém aparece nas fotografias', 'tentando esconder uma transformação sobrenatural',
+      'cantando num palco vazio depois do fim do mundo', 'negociando com uma entidade numa estação abandonada',
+      'descobrindo que seu maior inimigo é uma versão de si', 'tentando sobreviver a uma noite que se repete',
+      'seguindo pistas deixadas numa gravação misteriosa', 'entrando numa mansão durante uma tempestade',
+      'protegendo alguém sem revelar sua verdadeira identidade', 'tentando convencer todos de que está tudo sob controle'
+    ],
+    settings: [
+      'num baile de máscaras numa mansão gótica', 'numa cidade chuvosa iluminada por letreiros',
+      'num hospital abandonado com luzes ainda acesas', 'num palco vazio sob um único holofote',
+      'num castelo moderno no alto de um penhasco', 'numa boate subterrânea depois do fechamento',
+      'numa estrada deserta durante um eclipse', 'num hotel antigo onde os corredores mudam',
+      'numa estação de rádio que transmite mensagens impossíveis', 'numa sala de interrogatório com espelhos escuros'
+    ],
+    props: [
+      'com uma máscara rachada', 'segurando uma rosa preta', 'com um isqueiro que acende sozinho',
+      'com um gravador cheio de vozes desconhecidas', 'usando um sobretudo encharcado',
+      'com um colar que parece pulsar', 'com uma chave coberta de símbolos',
+      'com um celular recebendo chamadas de um número inexistente', 'com uma fotografia em que alguém foi apagado'
+    ],
+    premade: [
+      'Crie uma cena com a atmosfera de “Animal I Have Become”: uma pessoa encara o próprio lado monstruoso.',
+      'Imagine um videoclipe para “Dracula” em que o vampiro é o personagem menos assustador da história.',
+      'Desenhe um anti-herói inspirado na energia de “Monster”, mas com um cotidiano absurdamente comum.',
+      'Crie um pôster de suspense para uma história chamada “The Night Begins to Shine”.',
+      'Uma festa elegante é interrompida quando todos percebem que suas sombras estão agindo sozinhas.',
+      'Desenhe uma criatura inspirada em “Medusa” que transforma lembranças em estátuas de vidro.',
+      'Imagine um personagem de “Mary On A Cross” como protagonista de uma fantasia gótica original.',
+      'Crie uma sequência de três quadros inspirada na tensão de “The Chain”: confiança, ruptura e reencontro.',
+      'Um vampiro tenta passar despercebido numa cidade universitária durante a semana de provas.',
+      'Desenhe a capa de um álbum fictício chamado “Carnival of the Last Night”.'
+    ]
+  }
+];
