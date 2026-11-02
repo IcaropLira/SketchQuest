@@ -163,10 +163,10 @@ export default function Generator() {
     else if (r === 'failed') store.toast('Não foi possível compartilhar');
   };
 
-  const card = async () => {
+  const card = async (format: 'feed' | 'square' | 'story') => {
     if (!current) return;
-    await downloadPromptCard(current);
-    store.toast('Cartão baixado');
+    await downloadPromptCard(current, format);
+    store.toast(format === 'feed' ? 'Cartão para feed baixado' : format === 'square' ? 'Cartão quadrado baixado' : 'Cartão para Stories baixado');
   };
 
   const drew = () => {
@@ -297,8 +297,14 @@ export default function Generator() {
           <button type="button" className="btn" onClick={share} disabled={!current}>
             Compartilhar
           </button>
-          <button type="button" className="btn" onClick={card} disabled={!current}>
-            Baixar cartão
+          <button type="button" className="btn" onClick={() => card('feed')} disabled={!current} title="Imagem vertical 1080 × 1350 para feed">
+            Baixar feed
+          </button>
+          <button type="button" className="btn" onClick={() => card('square')} disabled={!current} title="Imagem quadrada 1080 × 1080">
+            Baixar quadrado
+          </button>
+          <button type="button" className="btn" onClick={() => card('story')} disabled={!current} title="Imagem vertical 1080 × 1920 para Stories">
+            Baixar Stories
           </button>
           <button type="button" className="btn danger" onClick={() => removeAt(safeCursor)} disabled={!current} title="Apaga esta ideia do histórico">
             🗑 Apagar esta

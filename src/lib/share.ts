@@ -83,10 +83,17 @@ function wrap(ctx: CanvasRenderingContext2D, text: string, maxWidth: number): st
   return lines;
 }
 
-/** Gera um cartão PNG (1080×1350) com a ideia, pronto para postar. */
-export async function downloadPromptCard(p: Pick<Prompt, 'text' | 'twist' | 'palette'>): Promise<void> {
+export type PromptCardFormat = 'feed' | 'square' | 'story';
+
+/** Gera um cartão PNG no formato escolhido, pronto para compartilhar. */
+export async function downloadPromptCard(
+  p: Pick<Prompt, 'text' | 'twist' | 'palette'>,
+  format: PromptCardFormat = 'feed',
+): Promise<void> {
   const W = 1080;
-  const H = 1350;
+  const H = format === 'square' ? 1080 : format === 'story' ? 1920 : 1350;
+  const story = format === 'story';
+  const square = format === 'square';
   const c = document.createElement('canvas');
   c.width = W;
   c.height = H;
@@ -111,9 +118,9 @@ export async function downloadPromptCard(p: Pick<Prompt, 'text' | 'twist' | 'pal
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, W, H);
   };
-  glow(W / 2, 260, 700, 'rgba(238,15,127,0.22)');
+  glow(W / 2, H * 0.19, 700, 'rgba(238,15,127,0.22)');
   glow(120, H - 160, 640, 'rgba(59,36,119,0.55)');
-  glow(W - 100, 820, 520, 'rgba(255,141,184,0.14)');
+  glow(W - 100, H * 0.61, 520, 'rgba(255,141,184,0.14)');
 
   ctx.strokeStyle = '#2a1f45';
   ctx.lineWidth = 2;
@@ -129,21 +136,21 @@ export async function downloadPromptCard(p: Pick<Prompt, 'text' | 'twist' | 'pal
   ctx.textAlign = 'center';
   ctx.fillStyle = grad;
   ctx.font = '500 30px "Fira Code", monospace';
-  ctx.fillText('✦  O QUE DESENHAR HOJE?  ✦', W / 2, 150);
+  ctx.fillText('✦  O QUE DESENHAR HOJE?  ✦', W / 2, H * (story ? 0.14 : square ? 0.16 : 0.11));
 
   ctx.fillStyle = '#ece6f7';
   ctx.font = '500 64px "Playfair Display", Georgia, serif';
   const lines = wrap(ctx, p.text, W - 220);
-  const lineH = 84;
-  let y = 330;
-  if (lines.length <= 4) y += 70;
+  const lineH = story ? 92 : 84;
+  let y = H * (story ? 0.32 : square ? 0.32 : 0.29);
+  if (lines.length <= 4) y += story ? 90 : 55;
   for (const l of lines.slice(0, 9)) {
     ctx.fillText(l, W / 2, y);
     y += lineH;
   }
 
   if (p.twist) {
-    y += 50;
+    y += story ? 72 : 42;
     ctx.fillStyle = '#ff8db8';
     ctx.font = '500 30px "Fira Code", monospace';
     ctx.fillText('DESAFIO', W / 2, y);
@@ -161,7 +168,7 @@ export async function downloadPromptCard(p: Pick<Prompt, 'text' | 'twist' | 'pal
     const gap = 18;
     const total = p.palette.length * size + (p.palette.length - 1) * gap;
     let x = (W - total) / 2;
-    const py = H - 330;
+    const py = H - (story ? 410 : square ? 280 : 330);
     for (const col of p.palette) {
       ctx.fillStyle = col;
       ctx.beginPath();
@@ -173,11 +180,11 @@ export async function downloadPromptCard(p: Pick<Prompt, 'text' | 'twist' | 'pal
 
   ctx.fillStyle = grad;
   ctx.font = '500 34px "Playfair Display", Georgia, serif';
-  ctx.fillText('Hiraku SketchQuest', W / 2, H - 120);
+  ctx.fillText('Hiraku SketchQuest', W / 2, H - (story ? 150 : square ? 95 : 120));
 
   await new Promise<void>((resolve) => {
     c.toBlob((b) => {
-      if (b) downloadBlob('sketchquest-ideia.png', b);
+      if (b) downloadBlob(`sketchquest-ideia-${format === 'feed' ? 'feed' : format === 'square' ? 'quadrado' : 'stories'}.png`, b);
       resolve();
     }, 'image/png');
   });
