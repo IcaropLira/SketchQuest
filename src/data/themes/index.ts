@@ -9,6 +9,7 @@ import { animeManga, mitologiaCelta, mitologiaChinesa, mitologiaHindu, mitologia
 import { aplicarPatch4 } from './patch4Universos';
 import { PATCH5_THEMES } from './patch5Resenha';
 import { PATCH6_THEMES } from './patch6Musica';
+import { PATCH8_BRASILIDADES } from './patch8Brasilidades';
 
 export const BUILTIN_THEMES: ThemeData[] = [...aplicarPatch4(aplicarPatch3(aplicarExpansaoProfunda([
   fantasia, espaco, terror, faroeste, lhamas, estudos, egito, noir,
@@ -16,6 +17,6 @@ export const BUILTIN_THEMES: ThemeData[] = [...aplicarPatch4(aplicarPatch3(aplic
   marvel, dc, fnaf, jogos, cartoons, sliceLife, mitologiaGrega, mitologiaNordica,
   mitologiaJaponesa, culturaPop, criaturasFantasticas,
   mitologiaRomana, mitologiaCelta, mitologiaChinesa, mitologiaHindu, mitologiasMesoamericanas, animeManga, pokemon,
-]))), ...PATCH5_THEMES, ...PATCH6_THEMES];
+]))), ...PATCH5_THEMES, ...PATCH6_THEMES, ...PATCH8_BRASILIDADES];
 
 export const DEFAULT_THEME_IDS = ['fantasia'];
